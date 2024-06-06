@@ -6,3 +6,11 @@ our understanding of the relationship between histone post-translational modific
 
 Nuclear receptor binding SET domain (NSD) proteins consist of NSD1, NSD2, and NSD3. These proteins participate in the regulation of tumor initiation and progression. However, the biological functions of NSD family  in BC progression remain unclear. 
 We here purposed to explore the underlying mechanisms and biological functions of NSD1 in BC progression. We formulated a hypothesis that NSD1 would strengthen BC cell drug resistance and lead to poor prognosis in patients with BC.
+
+```
+git clone ...
+git status
+git add
+git commit -m "some explanation"
+git push
+```
