@@ -26,9 +26,13 @@ Here, I propose to explore the underlying mechanisms and biological functions of
 2.  Coordinate the loading, merging, cleaning, and saving of the data by executing the script `data_processing.py`
    * Detailed explanations and requirmets can be found in [`data_processing_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_processing_explained.md)
    * Testing the script:
-    ```
-    pip install -r requirements.txt
-    ```
+   ```
+git clone ...
+git status
+git add
+git commit -m "some explanation"
+git push
+```
 
 ```
 git clone ...
