@@ -178,8 +178,8 @@ if __name__ == '__main__':
     main()
 ```
 ## Notes
-**Dependencies:** Ensure all required libraries are installed.
-**User Input:** The script prompts the user for subtype selection.
-**Error Handling:** Additional error handling can be included as needed.
-**Data Files:** Ensure file paths are correct for your environment.
-**Testing:** Test with sample data to ensure the script works as expected by running **`test_data_analysis.py`**.
+- **Dependencies:** Ensure all required libraries are installed.
+- **User Input:** The script prompts the user for subtype selection.
+- **Error Handling:** Additional error handling can be included as needed.
+- **Data Files:** Ensure file paths are correct for your environment.
+- **Testing:** Test with sample data to ensure the script works as expected by running **`test_data_analysis.py`**.
