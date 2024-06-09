@@ -19,31 +19,10 @@ You can install these libraries using pip:
 ```
 pip install pandas matplotlib numpy lifelines gseapy
 ```
-# Kaplan-Meier and GSEA Analysis Pipeline
-
-This script provides a comprehensive workflow for analyzing clinical and gene expression data, generating Kaplan-Meier survival curves, and performing Gene Set Enrichment Analysis (GSEA). Below is a detailed explanation of the script's functionality, along with the necessary requirements.
-
-## Requirements
-
-To run this script, you need to have the following Python libraries installed:
-
-- `pandas`
-- `matplotlib`
-- `numpy`
-- `lifelines`
-- `gseapy`
-
-You can install these libraries using pip:
-
-```sh
-pip install pandas matplotlib numpy lifelines gseapy
-Script Overview
+## Script Overview
 1. Data Loading and Validation
 load_data(filepath)
 Reads a CSV file from the given filepath into a Pandas DataFrame.
-
-python
-Copy code
 def load_data(filepath):
     return pd.read_csv(filepath)
 ensure_columns_present(data, required_columns)
