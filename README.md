@@ -20,9 +20,9 @@ Here, I propose to explore the underlying mechanisms and biological functions of
 ###  Technical steps:
 1.  Export data from [cBioPrtal](https://www.cbioportal.org/)
     * Choose a database according to the cancer type. In this project, I investigated the data from [METABRIC](https://www.cbioportal.org/study/summary?id=brca_metabric)
-    * Download clinical data and expression levels of the gene of choice. I chose **NSD1__
-    * Download mRNA expresion levels comparing groups with varying expreesion levels of the gene of interest. can choose to compare based on the median or quartiles. 
-      I chose to compare the bottom and the top quartiles of the expression of NSD1 
+    * Download clinical data and expression levels of the gene of choice. I chose ***NSD1***
+    * Download survival and mRNA expression data for groups with different expression levels of the gene of interest for each subtype separately. One might opt to compare data using either the median or quartiles. 
+      I chose to compare the ***bottom and the top quartiles of the expression of NSD1 and compare Luminal A (LumA), Luminal B(LumB) and Basal-like (Basal)*** 
 
 
 
