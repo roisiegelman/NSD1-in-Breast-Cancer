@@ -20,7 +20,7 @@ You can install these libraries using pip:
 pip install pandas matplotlib numpy lifelines gseapy
 ```
 ## Script Overview
-# 1. Data Loading and Validation
+### 1. Data Loading and Validation
 **`load_data(filepath)`**
  It reads a CSV file from the given filepath and converts it into a Pandas DataFrame.
 
