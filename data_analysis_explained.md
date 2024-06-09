@@ -23,9 +23,12 @@ pip install pandas matplotlib numpy lifelines gseapy
 # 1. Data Loading and Validation
 `load_data(filepath)`
  Reads a CSV file from the given filepath into a Pandas DataFrame.
+
 ```
 def load_data(filepath):
     return pd.read_csv(filepath)
+```
+
 ensure_columns_present(data, required_columns)
 Checks if the required columns are present in the DataFrame. Raises a ValueError if any columns are missing.
 ```
