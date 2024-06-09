@@ -37,18 +37,18 @@ def ensure_columns_present(data, required_columns):
     if not all(col in data.columns for col in required_columns):
         raise ValueError(f"Missing one or more required columns: {required_columns}")
  ```       
-2. Data Preprocessing
-convert_os_status(data)
-Converts the 'OS_STATUS' column to an 'event' column with binary values. '1
-' is converted to 1 (event), and other values are converted to 0 (no event).
+### 2. Data Preprocessing
+**`convert_os_status(data)`**
+  Converts the 'OS_STATUS' column to an 'event' column with binary values. '1' is converted to 1 (event), and other values are converted to 0 (no event).
 
 python
-Copy code
+```
 def convert_os_status(data):
     data['event'] = data['OS_STATUS'].apply(lambda x: 1 if x == '1:DECEASED' else 0)
     return data
-limit_months(data, max_months)
-Filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to the specified max_months.
+```
+**`limit_months(data, max_months)`**
+   Filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to the specified max_months.
 
 python
 Copy code
