@@ -13,12 +13,12 @@ Here, I propose to explore the underlying mechanisms and biological functions of
 
 ###  main goals
 
-(1)  explore the effect of NSD1 gene expression on the overall survival of BC patients with different subtypes (Luminal A, Luminal B and Basal-like)
+1.  explore the effect of NSD1 gene expression on the overall survival of BC patients with different subtypes (Luminal A, Luminal B and Basal-like)
   
-(2) Investigate the cellular pathways affected by NSD1 levels within patients with different subtypes (Luminal A, Luminal B and Basal-like)   
+2. Investigate the cellular pathways affected by NSD1 levels within patients with different subtypes (Luminal A, Luminal B and Basal-like)   
 
 ###  Technical steps:
-(1)  Export data from [cBioPrtal](https://www.cbioportal.org/)
+1.  Export data from [cBioPrtal](https://www.cbioportal.org/)
     * Choose a database according to the cancer type. In this project, I investigated the data from [METABRIC](https://www.cbioportal.org/study/summary?id=brca_metabric)
     * Download clinical data and expression levels of the gene of choice. I chose **NSD1__
     * Download mRNA expresion levels comparing groups with varying expreesion levels of the gene of interest. can choose to compare based on the median or quartiles. 
