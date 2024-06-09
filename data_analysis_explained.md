@@ -66,11 +66,10 @@ def create_expression_groups(data, gene_expression):
     return data
 ```
 ### 3. GSEA Analysis
- run_gsea(data, gsea_filepath, gene_set_filepath, subtype)
+ **`run_gsea(data, gsea_filepath, gene_set_filepath, subtype)`**
  Performs GSEA using the prerank function from the gseapy library. It reads the GSEA data from an Excel file and ranks the genes based on their log2 ratios.
 
-python
-Copy code
+```
 def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
     gsea_data = pd.read_excel(gsea_filepath, sheet_name=subtype)
     if 'Log2 Ratio' not in gsea_data.columns:
@@ -79,12 +78,12 @@ def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
     rnk = gsea_data[['Gene', 'Log2 Ratio']].sort_values(by='Log2 Ratio', ascending=False).dropna()
     gsea_results = prerank(rnk=rnk, gene_sets=gene_set_filepath, threads=4, permutation_num=100)
     return gsea_results
-4. Plotting Results
-plot_gsea_results(gsea_results, ax)
-Plots the GSEA results, highlighting significant pathways.
+```
+### 4. Plotting Results
+**`plot_gsea_results(gsea_results, ax)`**
+ Plots the GSEA results, highlighting significant pathways.
 
-python
-Copy code
+```
 def plot_gsea_results(gsea_results, ax):
     results_df = gsea_results.res2d
     results_df['NES'] = pd.to_numeric(results_df['NES'], errors='coerce')
@@ -109,11 +108,11 @@ def plot_gsea_results(gsea_results, ax):
 
     for i, (nes, pval) in enumerate(zip(terms['NES'], terms['NOM p-val'])):
         ax.text(nes, i, f"P={pval:.1e}", va='center', ha='left' if nes > 0 else 'right')
-plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype)
+```
+**`plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype)`**`**
 Plots Kaplan-Meier survival curves and calls run_gsea to plot GSEA results.
 
-python
-Copy code
+```
 def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype):
     kmf = KaplanMeierFitter()
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
@@ -145,12 +144,12 @@ def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, s
 
     plt.tight_layout()
     plt.show()
-5. Main Function
-main()
+```
+### 5. Main Function
+**`main()`**
 Coordinates the entire workflow, including loading data, preprocessing, filtering by subtype, and plotting results.
 
-python
-Copy code
+```
 def main():
     data_filepath = 'cleaned_clinical_nsd1_data.csv'
     gsea_filepath = '_NSD1_high_vs_low_quartiles.xlsx'
@@ -177,9 +176,10 @@ def main():
 
 if __name__ == '__main__':
     main()
-Notes
-Dependencies: Ensure all required libraries are installed.
-User Input: The script prompts the user for subtype selection.
-Error Handling: Additional error handling can be included as needed.
-Data Files: Ensure file paths are correct for your environment.
-Testing: Test with sample data to ensure the script works as expected.
+```
+## Notes
+**Dependencies:** Ensure all required libraries are installed.
+**User Input:** The script prompts the user for subtype selection.
+**Error Handling:** Additional error handling can be included as needed.
+**Data Files:** Ensure file paths are correct for your environment.
+**Testing:** Test with sample data to ensure the script works as expected by running **`test_data_analysis.py`**.
