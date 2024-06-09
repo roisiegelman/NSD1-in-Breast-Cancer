@@ -21,22 +21,22 @@ pip install pandas matplotlib numpy lifelines gseapy
 ```
 ## Script Overview
 # 1. Data Loading and Validation
-`load_data(filepath)`
- Reads a CSV file from the given filepath into a Pandas DataFrame.
+**`load_data(filepath)`**
+ It reads a CSV file from the given filepath and converts it into a Pandas DataFrame.
 
 ```
 def load_data(filepath):
     return pd.read_csv(filepath)
 ```
 
-ensure_columns_present(data, required_columns)
-Checks if the required columns are present in the DataFrame. Raises a ValueError if any columns are missing.
+**`ensure_columns_present(data, required_columns)`**
+Check if the required columns are present in the DataFrame. Raises a ValueError if any columns are missing.
+
 ```
-python
-Copy code
 def ensure_columns_present(data, required_columns):
     if not all(col in data.columns for col in required_columns):
         raise ValueError(f"Missing one or more required columns: {required_columns}")
+ ```       
 2. Data Preprocessing
 convert_os_status(data)
 Converts the 'OS_STATUS' column to an 'event' column with binary values. '1
