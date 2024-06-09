@@ -26,7 +26,7 @@ Here, I propose to explore the underlying mechanisms and biological functions of
 2.  **Coordinate the loading, merging, cleaning, and saving of the data by** 
    * Execute the script `data_processing.py`
   ```
-python _data_processing.py
+python data_processing.py
 ```
    * The script will yield `cleaned_clinical_nsd1_data.csv` that will be used in the next part
    * Detailed explanations and requirements can be found in [`data_processing_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_processing_explained.md)
@@ -35,11 +35,5 @@ python _data_processing.py
 pytest test_data_processing.py
 ```
 
-```
-git clone ...
-git status
-git add
-git commit -m "some explanation"
-git push
-```
+
 This project was originally implemented as part of the [Python programming course](https://github.com/szabgab/wis-python-course-2024-04) at the [Weizmann Institute of Science](https://www.weizmann.ac.il/) taught by [Gabor Szabo](https://szabgab.com/).
