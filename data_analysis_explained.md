@@ -1,7 +1,7 @@
 Detailed Explanation and Requirements for 'data_analysis_.py'
-markdown
-# Kaplan-Meier and GSEA Analysis Pipeline
 
+# Kaplan-Meier and GSEA Analysis Pipeline
+## Detailed Explanation and Requirements for 'data_analysis_.py':
 This script provides a comprehensive workflow for analyzing clinical and gene expression data, generating Kaplan-Meier survival curves, and performing Gene Set Enrichment Analysis (GSEA). Below is a detailed explanation of the script's functionality, along with the necessary requirements.
 
 ## Requirements
