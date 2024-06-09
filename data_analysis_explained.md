@@ -16,9 +16,9 @@ To run this script, you need to have the following Python libraries installed:
 
 You can install these libraries using pip:
 
-```sh
+```
 pip install pandas matplotlib numpy lifelines gseapy
-
+```
 # Kaplan-Meier and GSEA Analysis Pipeline
 
 This script provides a comprehensive workflow for analyzing clinical and gene expression data, generating Kaplan-Meier survival curves, and performing Gene Set Enrichment Analysis (GSEA). Below is a detailed explanation of the script's functionality, along with the necessary requirements.
