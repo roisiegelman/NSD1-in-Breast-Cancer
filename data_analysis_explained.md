@@ -1,74 +1,61 @@
-# Explanation of `data_analysis.py`
+Detailed Explanation and Requirements
+markdown
+Copy code
+# Kaplan-Meier and GSEA Analysis Pipeline
 
-This document explains the functionality and purpose of each part of the `data_analysis.py` script.
+This script provides a comprehensive workflow for analyzing clinical and gene expression data, generating Kaplan-Meier survival curves, and performing Gene Set Enrichment Analysis (GSEA). Below is a detailed explanation of the script's functionality, along with the necessary requirements.
 
 ## Requirements
 
-To run this script, you need to have the following Python packages installed:
+To run this script, you need to have the following Python libraries installed:
 
 - `pandas`
 - `matplotlib`
 - `numpy`
 - `lifelines`
 - `gseapy`
-- `openpyxl`
 
-You can install these packages using pip:
+You can install these libraries using pip:
 
 ```sh
-pip install pandas matplotlib numpy lifelines gseapy openpyxl
-Importing Libraries
-python
-Copy code
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-from lifelines import KaplanMeierFitter
-from lifelines.statistics import logrank_test
-from gseapy import prerank
-Explanation
-pandas: Used for data manipulation and analysis.
-matplotlib.pyplot: Used for plotting graphs.
-numpy: Used for numerical operations.
-lifelines: Used for survival analysis.
-gseapy: Used for gene set enrichment analysis.
-Function Definitions
-1. load_data
+pip install pandas matplotlib numpy lifelines gseapy
+Script Overview
+1. Data Loading and Validation
+load_data(filepath)
+Reads a CSV file from the given filepath into a Pandas DataFrame.
+
 python
 Copy code
 def load_data(filepath):
     return pd.read_csv(filepath)
-Explanation
-This function loads data from a CSV file specified by the filepath and returns a pandas DataFrame.
+ensure_columns_present(data, required_columns)
+Checks if the required columns are present in the DataFrame. Raises a ValueError if any columns are missing.
 
-2. ensure_columns_present
 python
 Copy code
 def ensure_columns_present(data, required_columns):
     if not all(col in data.columns for col in required_columns):
         raise ValueError(f"Missing one or more required columns: {required_columns}")
-Explanation
-This function checks if all required columns are present in the DataFrame. If any required column is missing, it raises a ValueError.
+2. Data Preprocessing
+convert_os_status(data)
+Converts the 'OS_STATUS' column to an 'event' column with binary values. '1
+' is converted to 1 (event), and other values are converted to 0 (no event).
 
-3. convert_os_status
 python
 Copy code
 def convert_os_status(data):
     data['event'] = data['OS_STATUS'].apply(lambda x: 1 if x == '1:DECEASED' else 0)
     return data
-Explanation
-This function converts the 'OS_STATUS' column to a binary 'event' column, where '1
-' is converted to 1 (event occurred) and other statuses are converted to 0 (event did not occur).
+limit_months(data, max_months)
+Filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to the specified max_months.
 
-4. limit_months
 python
 Copy code
 def limit_months(data, max_months):
     return data[data['OS_MONTHS'] <= max_months]
-Explanation
-This function filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to max_months.
+create_expression_groups(data, gene_expression)
+Creates binary columns indicating high and low gene expression based on the top and bottom quartiles.
 
-5. create_expression_groups
 python
 Copy code
 def create_expression_groups(data, gene_expression):
@@ -77,10 +64,10 @@ def create_expression_groups(data, gene_expression):
     data.loc[:, 'high_expression'] = data.loc[:, gene_expression] >= top_quartile_threshold
     data.loc[:, 'low_expression'] = data.loc[:, gene_expression] <= bottom_quartile_threshold
     return data
-Explanation
-This function creates two new columns: 'high_expression' and 'low_expression'. These columns indicate whether the expression level of a given gene is in the top or bottom quartile, respectively.
+3. GSEA Analysis
+run_gsea(data, gsea_filepath, gene_set_filepath, subtype)
+Performs GSEA using the prerank function from the gseapy library. It reads the GSEA data from an Excel file and ranks the genes based on their log2 ratios.
 
-6. run_gsea
 python
 Copy code
 def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
@@ -91,16 +78,16 @@ def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
     rnk = gsea_data[['Gene', 'Log2 Ratio']].sort_values(by='Log2 Ratio', ascending=False).dropna()
     gsea_results = prerank(rnk=rnk, gene_sets=gene_set_filepath, threads=4, permutation_num=100)
     return gsea_results
-Explanation
-This function runs Gene Set Enrichment Analysis (GSEA) on the given data. It reads the GSEA data from an Excel file, checks for the required 'Log2 Ratio' column, and performs preranked GSEA using the prerank function from gseapy.
+4. Plotting Results
+plot_gsea_results(gsea_results, ax)
+Plots the GSEA results, highlighting significant pathways.
 
-7. plot_gsea_results
 python
 Copy code
 def plot_gsea_results(gsea_results, ax):
     results_df = gsea_results.res2d
     results_df['NES'] = pd.to_numeric(results_df['NES'], errors='coerce')
-    results_df = results_df[results_df['FDR q-val'] < 0.05]  # Filter for significant pathways
+    results_df = results_df[results_df['FDR q-val'] < 0.05]
 
     high_expr_terms = results_df[results_df['NES'] > 0].nlargest(10, 'NES')
     low_expr_terms = results_df[results_df['NES'] < 0].nsmallest(10, 'NES')
@@ -121,10 +108,9 @@ def plot_gsea_results(gsea_results, ax):
 
     for i, (nes, pval) in enumerate(zip(terms['NES'], terms['NOM p-val'])):
         ax.text(nes, i, f"P={pval:.1e}", va='center', ha='left' if nes > 0 else 'right')
-Explanation
-This function plots the GSEA results on a horizontal bar plot. It filters for significant pathways (FDR q-val < 0.05), separates the pathways into high and low expression groups, and plots the NES (Normalized Enrichment Score) values.
+plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype)
+Plots Kaplan-Meier survival curves and calls run_gsea to plot GSEA results.
 
-8. plot_kaplan_meier
 python
 Copy code
 def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype):
@@ -158,10 +144,10 @@ def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, s
 
     plt.tight_layout()
     plt.show()
-Explanation
-This function plots Kaplan-Meier survival curves for high and low expression groups of a given gene. It performs a log-rank test to compare the survival distributions between the two groups and displays the p-value on the plot. It also calls the run_gsea and plot_gsea_results functions to plot GSEA results.
+5. Main Function
+main()
+Coordinates the entire workflow, including loading data, preprocessing, filtering by subtype, and plotting results.
 
-Main Function
 python
 Copy code
 def main():
@@ -180,4 +166,19 @@ def main():
     subtype_map = {1: 'LumA', 2: 'LumB', 3: 'Basal'}
     chosen_subtype = subtype_map.get(subtype_choice, 'LumA')
     
-    data = data
+    data = data[data['CLAUDIN_SUBTYPE'] == chosen_subtype]
+    
+    if data.empty:
+        print(f"No data available for the selected subtype: {chosen_subtype}")
+        return
+
+    plot_kaplan_meier(data, 'NSD1', gsea_filepath, gene_set_filepath, chosen_subtype)
+
+if __name__ == '__main__':
+    main()
+Notes
+Dependencies: Ensure all required libraries are installed.
+User Input: The script prompts the user for subtype selection.
+Error Handling: Additional error handling can be included as needed.
+Data Files: Ensure file paths are correct for your environment.
+Testing: Test with sample data to ensure the script works as expected.
