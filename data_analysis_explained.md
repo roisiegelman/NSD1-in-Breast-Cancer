@@ -41,7 +41,7 @@ def ensure_columns_present(data, required_columns):
 **`convert_os_status(data)`**
   Converts the 'OS_STATUS' column to an 'event' column with binary values. '1' is converted to 1 (event), and other values are converted to 0 (no event).
 
-python
+
 ```
 def convert_os_status(data):
     data['event'] = data['OS_STATUS'].apply(lambda x: 1 if x == '1:DECEASED' else 0)
@@ -50,24 +50,24 @@ def convert_os_status(data):
 **`limit_months(data, max_months)`**
    Filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to the specified max_months.
 
-python
-Copy code
+```
 def limit_months(data, max_months):
     return data[data['OS_MONTHS'] <= max_months]
-create_expression_groups(data, gene_expression)
+```
+**`create_expression_groups(data, gene_expression)`**
 Creates binary columns indicating high and low gene expression based on the top and bottom quartiles.
 
-python
-Copy code
+```
 def create_expression_groups(data, gene_expression):
     top_quartile_threshold = data[gene_expression].quantile(0.75)
     bottom_quartile_threshold = data[gene_expression].quantile(0.25)
     data.loc[:, 'high_expression'] = data.loc[:, gene_expression] >= top_quartile_threshold
     data.loc[:, 'low_expression'] = data.loc[:, gene_expression] <= bottom_quartile_threshold
     return data
-3. GSEA Analysis
-run_gsea(data, gsea_filepath, gene_set_filepath, subtype)
-Performs GSEA using the prerank function from the gseapy library. It reads the GSEA data from an Excel file and ranks the genes based on their log2 ratios.
+```
+### 3. GSEA Analysis
+ run_gsea(data, gsea_filepath, gene_set_filepath, subtype)
+ Performs GSEA using the prerank function from the gseapy library. It reads the GSEA data from an Excel file and ranks the genes based on their log2 ratios.
 
 python
 Copy code
