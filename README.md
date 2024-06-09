@@ -23,7 +23,8 @@ Here, I propose to explore the underlying mechanisms and biological functions of
     * Download clinical data and expression levels of the gene of choice. I chose ***NSD1***
     * Download survival and mRNA expression data for groups with different expression levels of the gene of interest for each subtype separately. One might opt to compare data using either the median or quartiles. 
       I chose to compare the ***bottom and the top quartiles of the expression of NSD1 and compare Luminal A (LumA), Luminal B(LumB) and Basal-like (Basal)*** 
-2.  Coordinate the loading, merging, cleaning, and saving of the data by executing the script 'data_processing.py'
+2.  Coordinate the loading, merging, cleaning, and saving of the data by executing the script `data_processing.py
+`
 .
 
 
