@@ -18,12 +18,12 @@ Here, I propose to explore the underlying mechanisms and biological functions of
 2. Investigate the cellular pathways affected by NSD1 levels within patients with different subtypes (Luminal A, Luminal B and Basal-like)   
 
 ###  Technical steps:
-1.  **Export data from [cBioPrtal](https://www.cbioportal.org/)**
+**1. Export data from [cBioPrtal](https://www.cbioportal.org/)**
     * Choose a database according to the cancer type. In this project, I investigated the data from [METABRIC](https://www.cbioportal.org/study/summary?id=brca_metabric)
     * Download clinical data and expression levels of the gene of choice. I chose *NSD1*
     * Download survival and mRNA expression data for groups with different expression levels of the gene of interest for each subtype separately. One might opt to compare data using either the median or quartiles. 
       I chose to compare the *bottom and the top quartiles of the expression of NSD1 and compare Luminal A (LumA), Luminal B(LumB) and Basal-like (Basal)*
-2.  **Coordinate the loading, merging, cleaning, and saving of the data by** 
+**2. Coordinate the loading, merging, cleaning, and saving of the data by** 
    * Execute the script `data_processing.py`
   ```
 python data_processing.py
@@ -34,6 +34,18 @@ python data_processing.py
    ```
 pytest test_data_processing.py
 ```
-3. analyse the data
+**3. analyse the data**
+ * Execute the script `data_analysis.py`
+  ```
+python data_analysis.py
+```
+   * The script will yield a figure with 2 panels: Kaplan-Meier plot and barplot of the enriched pathwats
+   * Detailed explanations and requirements can be found in [`data_analysis_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_analysis_explained.md)
+   * Testing the script:
+   ```
+pytest test_data_analysis.py
+```
+
+
 
 This project was originally implemented as part of the [Python programming course](https://github.com/szabgab/wis-python-course-2024-04) at the [Weizmann Institute of Science](https://www.weizmann.ac.il/) taught by [Gabor Szabo](https://szabgab.com/).
