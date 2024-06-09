@@ -1,4 +1,4 @@
-# Elucidating the role of NSD1  in breast cancer heterogeneity progression
+# Elucidating the role of NSD1  in breast cancer  progression
 
 ###  introduction
 Breast cancer is one of the world's most common types of cancer. It is an aggressive, highly heterogeneous disease caused by mammary epithelial cell changes driven by genetic and epigenetic alterations. Reversible epigenetic regulation promotes breast cancer heterogeneity between and within tumors' cells by enabling cellular plasticity. 
@@ -34,6 +34,6 @@ python data_processing.py
    ```
 pytest test_data_processing.py
 ```
-
+3. analyse the data
 
 This project was originally implemented as part of the [Python programming course](https://github.com/szabgab/wis-python-course-2024-04) at the [Weizmann Institute of Science](https://www.weizmann.ac.il/) taught by [Gabor Szabo](https://szabgab.com/).
