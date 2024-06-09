@@ -27,11 +27,9 @@ Here, I propose to explore the underlying mechanisms and biological functions of
    * Detailed explanations and requirmets can be found in [`data_processing_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_processing_explained.md)
    * Testing the script:
    ```
-git clone ...
-git status
-git add
-git commit -m "some explanation"
-git push
+
+pytest test_data_analysis.py
+
 ```
 
 ```
