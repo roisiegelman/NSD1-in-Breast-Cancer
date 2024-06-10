@@ -108,7 +108,7 @@ def plot_gsea_results(gsea_results, ax):
     for i, (nes, pval) in enumerate(zip(terms['NES'], terms['NOM p-val'])):
         ax.text(nes, i, f"P={pval:.1e}", va='center', ha='left' if nes > 0 else 'right')
 ```
-**`plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype)`**`**
+**`plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype)`**
 Plots Kaplan-Meier survival curves and calls run_gsea to plot GSEA results.
 
 ```python
