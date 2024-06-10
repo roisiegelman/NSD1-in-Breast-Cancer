@@ -20,7 +20,7 @@ pip install pandas matplotlib numpy lifelines gseapy
   ```
 ## Script Overview
 ### 1. Data Loading and Validation
-**`A. load_data(filepath)`**
+##    A. **`load_data(filepath)`**
  - **Purpose**: It reads a CSV file from the given filepath and converts it into a Pandas DataFrame.
 
 ```python
