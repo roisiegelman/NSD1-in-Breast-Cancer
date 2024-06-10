@@ -21,7 +21,7 @@ pip install pandas matplotlib numpy lifelines gseapy
 ## Script Overview
 ### 1. Data Loading and Validation
 **`load_data(filepath)`**
- It reads a CSV file from the given filepath and converts it into a Pandas DataFrame.
+ - **Purpose**: It reads a CSV file from the given filepath and converts it into a Pandas DataFrame.
 
 ```python
 def load_data(filepath):
@@ -29,7 +29,7 @@ def load_data(filepath):
 ```
 
 **`ensure_columns_present(data, required_columns)`**
-Check if the required columns are present in the DataFrame. Raises a ValueError if any columns are missing.
+- **Purpose**: Check if the required columns are present in the DataFrame. Raises a ValueError if any columns are missing.
 
 ```python
 def ensure_columns_present(data, required_columns):
@@ -38,7 +38,7 @@ def ensure_columns_present(data, required_columns):
  ```       
 ### 2. Data Preprocessing
 **`convert_os_status(data)`**
-  Converts the 'OS_STATUS' column to an 'event' column with binary values. '1' is converted to 1 (event), and other values are converted to 0 (no event).
+  - **Purpose**: Converts the 'OS_STATUS' column to an 'event' column with binary values. '1' is converted to 1 (event), and other values are converted to 0 (no event).
 
 
 ```python
@@ -47,14 +47,14 @@ def convert_os_status(data):
     return data
 ```
 **`limit_months(data, max_months)`**
-   Filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to the specified max_months.
+   - **Purpose**: Filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to the specified max_months.
 
 ```python
 def limit_months(data, max_months):
     return data[data['OS_MONTHS'] <= max_months]
 ```
 **`create_expression_groups(data, gene_expression)`**
-Creates binary columns indicating high and low gene expression based on the top and bottom quartiles.
+- **Purpose**: Creates binary columns indicating high and low gene expression based on the top and bottom quartiles.
 
 ```python
 def create_expression_groups(data, gene_expression):
@@ -66,7 +66,7 @@ def create_expression_groups(data, gene_expression):
 ```
 ### 3. GSEA Analysis
  **`run_gsea(data, gsea_filepath, gene_set_filepath, subtype)`**
- Performs GSEA using the prerank function from the gseapy library. It reads the GSEA data from an Excel file and ranks the genes based on their log2 ratios.
+ - **Purpose**: Performs GSEA using the prerank function from the gseapy library. It reads the GSEA data from an Excel file and ranks the genes based on their log2 ratios.
 
 ```python
 def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
@@ -80,7 +80,7 @@ def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
 ```
 ### 4. Plotting Results
 **`plot_gsea_results(gsea_results, ax)`**
- Plots the GSEA results, highlighting significant pathways.
+ - **Purpose**: Plots the GSEA results, highlighting significant pathways.
 
 ```python
 def plot_gsea_results(gsea_results, ax):
@@ -109,7 +109,7 @@ def plot_gsea_results(gsea_results, ax):
         ax.text(nes, i, f"P={pval:.1e}", va='center', ha='left' if nes > 0 else 'right')
 ```
 **`plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype)`**
-Plots Kaplan-Meier survival curves and calls run_gsea to plot GSEA results.
+- **Purpose**: Plots Kaplan-Meier survival curves and calls run_gsea to plot GSEA results.
 
 ```python
 def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype):
@@ -146,7 +146,7 @@ def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, s
 ```
 ### 5. Main Function
 **`main()`**
-Coordinates the entire workflow, including loading data, preprocessing, filtering by subtype, and plotting results.
+- **Purpose**: Coordinates the entire workflow, including loading data, preprocessing, filtering by subtype, and plotting results.
 
 ```python
 def main():
