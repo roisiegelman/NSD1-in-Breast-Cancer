@@ -31,7 +31,7 @@ def load_data(filepath):
 **`ensure_columns_present(data, required_columns)`**
 Check if the required columns are present in the DataFrame. Raises a ValueError if any columns are missing.
 
-```
+```python
 def ensure_columns_present(data, required_columns):
     if not all(col in data.columns for col in required_columns):
         raise ValueError(f"Missing one or more required columns: {required_columns}")
@@ -41,7 +41,7 @@ def ensure_columns_present(data, required_columns):
   Converts the 'OS_STATUS' column to an 'event' column with binary values. '1' is converted to 1 (event), and other values are converted to 0 (no event).
 
 
-```
+```python
 def convert_os_status(data):
     data['event'] = data['OS_STATUS'].apply(lambda x: 1 if x == '1:DECEASED' else 0)
     return data
@@ -49,14 +49,14 @@ def convert_os_status(data):
 **`limit_months(data, max_months)`**
    Filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to the specified max_months.
 
-```
+```python
 def limit_months(data, max_months):
     return data[data['OS_MONTHS'] <= max_months]
 ```
 **`create_expression_groups(data, gene_expression)`**
 Creates binary columns indicating high and low gene expression based on the top and bottom quartiles.
 
-```
+```python
 def create_expression_groups(data, gene_expression):
     top_quartile_threshold = data[gene_expression].quantile(0.75)
     bottom_quartile_threshold = data[gene_expression].quantile(0.25)
@@ -68,7 +68,7 @@ def create_expression_groups(data, gene_expression):
  **`run_gsea(data, gsea_filepath, gene_set_filepath, subtype)`**
  Performs GSEA using the prerank function from the gseapy library. It reads the GSEA data from an Excel file and ranks the genes based on their log2 ratios.
 
-```
+```python
 def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
     gsea_data = pd.read_excel(gsea_filepath, sheet_name=subtype)
     if 'Log2 Ratio' not in gsea_data.columns:
@@ -82,7 +82,7 @@ def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
 **`plot_gsea_results(gsea_results, ax)`**
  Plots the GSEA results, highlighting significant pathways.
 
-```
+```python
 def plot_gsea_results(gsea_results, ax):
     results_df = gsea_results.res2d
     results_df['NES'] = pd.to_numeric(results_df['NES'], errors='coerce')
@@ -111,7 +111,7 @@ def plot_gsea_results(gsea_results, ax):
 **`plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype)`**`**
 Plots Kaplan-Meier survival curves and calls run_gsea to plot GSEA results.
 
-```
+```python
 def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype):
     kmf = KaplanMeierFitter()
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
@@ -148,7 +148,7 @@ def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, s
 **`main()`**
 Coordinates the entire workflow, including loading data, preprocessing, filtering by subtype, and plotting results.
 
-```
+```python
 def main():
     data_filepath = 'cleaned_clinical_nsd1_data.csv'
     gsea_filepath = '_NSD1_high_vs_low_quartiles.xlsx'
