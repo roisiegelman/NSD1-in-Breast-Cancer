@@ -20,7 +20,7 @@ pip install pandas matplotlib numpy lifelines gseapy
   ```
 ## Script Overview
 ### 1. Data Loading and Validation
-##    A. **`load_data(filepath)`**
+###    A. **`load_data(filepath)`**
  - **Purpose**: It reads a CSV file from the given filepath and converts it into a Pandas DataFrame.
 
 ```python
@@ -28,7 +28,7 @@ def load_data(filepath):
     return pd.read_csv(filepath)
 ```
 
-**`ensure_columns_present(data, required_columns)`**
+###    B.**`ensure_columns_present(data, required_columns)`**
 - **Purpose**: Check if the required columns are present in the DataFrame. Raises a ValueError if any columns are missing.
 
 ```python
@@ -37,7 +37,7 @@ def ensure_columns_present(data, required_columns):
         raise ValueError(f"Missing one or more required columns: {required_columns}")
  ```       
 ### 2. Data Preprocessing
-**`convert_os_status(data)`**
+###    A. **`convert_os_status(data)`**
   - **Purpose**: Converts the 'OS_STATUS' column to an 'event' column with binary values. '1' is converted to 1 (event), and other values are converted to 0 (no event).
 
 
@@ -46,14 +46,14 @@ def convert_os_status(data):
     data['event'] = data['OS_STATUS'].apply(lambda x: 1 if x == '1:DECEASED' else 0)
     return data
 ```
-**`limit_months(data, max_months)`**
+###    B. **`limit_months(data, max_months)`**
    - **Purpose**: Filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to the specified max_months.
 
 ```python
 def limit_months(data, max_months):
     return data[data['OS_MONTHS'] <= max_months]
 ```
-**`create_expression_groups(data, gene_expression)`**
+###    C. **`create_expression_groups(data, gene_expression)`**
 - **Purpose**: Creates binary columns indicating high and low gene expression based on the top and bottom quartiles.
 
 ```python
@@ -79,7 +79,7 @@ def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
     return gsea_results
 ```
 ### 4. Plotting Results
-**`plot_gsea_results(gsea_results, ax)`**
+###    A. **`plot_gsea_results(gsea_results, ax)`**
  - **Purpose**: Plots the GSEA results, highlighting significant pathways.
 
 ```python
@@ -108,7 +108,7 @@ def plot_gsea_results(gsea_results, ax):
     for i, (nes, pval) in enumerate(zip(terms['NES'], terms['NOM p-val'])):
         ax.text(nes, i, f"P={pval:.1e}", va='center', ha='left' if nes > 0 else 'right')
 ```
-**`plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype)`**
+###    B. **`plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, subtype)`**
 - **Purpose**: Plots Kaplan-Meier survival curves and calls run_gsea to plot GSEA results.
 
 ```python
