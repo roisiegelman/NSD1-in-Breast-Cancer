@@ -183,8 +183,8 @@ if __name__ == "__main__":
 ```
 **Purpose**: Ensure the main function is called when the script is run directly.
 Steps:
-Check Execution Context: if __name__ == "__main__": checks if the script is being run directly.
-Call Main Function: main() is called to execute the main data processing steps.
+Check Execution Context: 'if __name__ == "__main__"': checks if the script is being run directly.
+Call Main Function: `main()` is called to execute the main data processing steps.
 ## Notes
 - **Dependencies:** Ensure all required libraries are installed.
 - **User Input:** The script prompts the user for subtype selection.
