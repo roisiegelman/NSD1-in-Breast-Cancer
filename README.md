@@ -23,10 +23,11 @@ Here, I propose to explore the underlying mechanisms and biological functions of
     * Download clinical data and expression levels of the gene of choice. I chose *NSD1*
     * Download survival and mRNA expression data for groups with different expression levels of the gene of interest for each subtype separately. One might opt to compare data using either the median or quartiles. 
       I chose to compare the *bottom and the top quartiles of the expression of NSD1 and compare Luminal A (LumA), Luminal B(LumB) and Basal-like (Basal)*
+
 **2. Coordinate the loading, merging, cleaning, and saving of the data by** 
    * Execute the script `data_processing.py`
-  ```
-python data_processing.py
+  ```python
+ data_processing.py
 ```
    * The script will yield `cleaned_clinical_nsd1_data.csv` that will be used in the next part
    * Detailed explanations and requirements can be found in [`data_processing_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_processing_explained.md)
@@ -36,13 +37,13 @@ pytest test_data_processing.py
 ```
 **3. analyse the data**
  * Execute the script `data_analysis.py`
-  ```
-python data_analysis.py
+  ```python
+ data_analysis.py
 ```
    * The script will yield a figure with 2 panels: Kaplan-Meier plot and barplot of the enriched pathwats
    * Detailed explanations and requirements can be found in [`data_analysis_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_analysis_explained.md)
    * Testing the script:
-   ```
+   ```python
 pytest test_data_analysis.py
 ```
 
