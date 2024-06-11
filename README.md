@@ -31,7 +31,7 @@ python data_processing.py
    * The script will yield `cleaned_clinical_nsd1_data.csv` that will be used in the next part
    * Detailed explanations and requirements can be found in [`data_processing_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_processing_explained.md)
    * Testing the script:
-   ```
+   ``` python
 pytest test_data_processing.py
 ```
 **3. analyse the data**
