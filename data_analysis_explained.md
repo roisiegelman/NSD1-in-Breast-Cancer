@@ -45,14 +45,9 @@ def convert_os_status(data):
     data['event'] = data['OS_STATUS'].apply(lambda x: 1 if x == '1:DECEASED' else 0)
     return data
 ```
-###    B. **`limit_months(data, max_months)`**
-   - **Purpose**: Filters the DataFrame to include only rows where 'OS_MONTHS' is less than or equal to the specified max_months.
 
-```python
-def limit_months(data, max_months):
-    return data[data['OS_MONTHS'] <= max_months]
-```
-###    C. **`create_expression_groups(data, gene_expression)`**
+
+###    B. **`create_expression_groups(data, gene_expression)`**
 - **Purpose**: Creates binary columns indicating high and low gene expression based on the top and bottom quartiles.
 
 ```python
