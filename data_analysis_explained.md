@@ -19,7 +19,7 @@ pip install -r requirements.txt
   ```
 ## Script Overview
 ### 1. Data Loading and Validation
-###    A. **`load_data(filepath)`**
+####    A. **`load_data(filepath)`**
  - **Purpose**: It reads a CSV file from the given filepath and converts it into a Pandas DataFrame.
 
 ```python
@@ -27,7 +27,7 @@ def load_data(filepath):
     return pd.read_csv(filepath)
 ```
 
-###    B.**`ensure_columns_present(data, required_columns)`**
+####    B.**`ensure_columns_present(data, required_columns)`**
 - **Purpose**: Check if the required columns are present in the DataFrame. Raises a ValueError if any columns are missing.
 
 ```python
