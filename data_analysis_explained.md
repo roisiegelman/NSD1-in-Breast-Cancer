@@ -4,8 +4,7 @@
 This script provides a comprehensive workflow for analyzing clinical and gene expression data, generating Kaplan-Meier survival curves, and performing Gene Set Enrichment Analysis (GSEA). Below is a detailed explanation of the script's functionality, along with the necessary requirements.
 
 ## Requirements
-
-To run this script, you need to have the following Python libraries installed:
+To run this script, you need to have the following Python libraries installed :
 
 - `pandas`
 - `matplotlib`
@@ -13,10 +12,10 @@ To run this script, you need to have the following Python libraries installed:
 - `lifelines`
 - `gseapy`
 
-You can install these libraries using pip:
+You can install these libraries using listed in `requirements.txt`, using pip:
 
 ```python
-pip install pandas matplotlib numpy lifelines gseapy
+pip install -r requirements.txt
   ```
 ## Script Overview
 ### 1. Data Loading and Validation
