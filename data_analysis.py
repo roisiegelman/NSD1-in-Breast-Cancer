@@ -1,10 +1,10 @@
 import pandas as pd
-import lifelines
 import matplotlib.pyplot as plt
 import numpy as np
 from lifelines import KaplanMeierFitter
 from lifelines.statistics import logrank_test
 from gseapy import prerank
+import sys
 
 def load_data(filepath):
     return pd.read_csv(filepath)
@@ -17,14 +17,11 @@ def convert_os_status(data):
     data['event'] = data['OS_STATUS'].apply(lambda x: 1 if x == '1:DECEASED' else 0)
     return data
 
-def limit_months(data, max_months):
-    return data[data['OS_MONTHS'] <= max_months]
-
 def create_expression_groups(data, gene_expression):
     top_quartile_threshold = data[gene_expression].quantile(0.75)
     bottom_quartile_threshold = data[gene_expression].quantile(0.25)
-    data.loc[:, 'high_expression'] = data.loc[:, gene_expression] >= top_quartile_threshold
-    data.loc[:, 'low_expression'] = data.loc[:, gene_expression] <= bottom_quartile_threshold
+    data['high_expression'] = data[gene_expression] >= top_quartile_threshold
+    data['low_expression'] = data[gene_expression] <= bottom_quartile_threshold
     return data
 
 def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
@@ -91,21 +88,17 @@ def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, s
     plot_gsea_results(gsea_results, ax2)
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig('kaplan_meier_plot.png')
 
-def main():
-    data_filepath = 'cleaned_clinical_nsd1_data.csv'
-    gsea_filepath = '_NSD1_high_vs_low_quartiles.xlsx'
-    gene_set_filepath = 'h.all.v2023.2.Hs.symbols.gmt'
+    if not any(name.startswith('pytest') for name in sys.modules):
+        plt.show()
 
+def main(data_filepath='cleaned_clinical_nsd1_data.csv', gsea_filepath='_NSD1_high_vs_low_quartiles.xlsx', gene_set_filepath='h.all.v2023.2.Hs.symbols.gmt', subtype_choice=1):
     data = load_data(data_filepath)
     ensure_columns_present(data, ['OS_MONTHS', 'OS_STATUS', 'CLAUDIN_SUBTYPE', 'NSD1'])
     data = convert_os_status(data)
-    data = limit_months(data, 200)
     data = create_expression_groups(data, 'NSD1')
 
-    print("Enter the number corresponding to the subtype: 1 for LumA, 2 for LumB, 3 for Basal:")
-    subtype_choice = int(input().strip())
     subtype_map = {1: 'LumA', 2: 'LumB', 3: 'Basal'}
     chosen_subtype = subtype_map.get(subtype_choice, 'LumA')
     
@@ -118,4 +111,9 @@ def main():
     plot_kaplan_meier(data, 'NSD1', gsea_filepath, gene_set_filepath, chosen_subtype)
 
 if __name__ == '__main__':
-    main()
+    if any(name.startswith('pytest') for name in sys.modules):
+        main()  # Run with default parameters
+    else:
+        print("Enter the number corresponding to the subtype: 1 for LumA, 2 for LumB, 3 for Basal:")
+        subtype_choice = int(input().strip())
+        main(subtype_choice=subtype_choice)

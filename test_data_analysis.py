@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 from data_analysis import (
-    load_data, ensure_columns_present, convert_os_status, limit_months,
+    load_data, ensure_columns_present, convert_os_status,
     create_expression_groups, run_gsea, plot_kaplan_meier
 )
 
@@ -28,15 +28,6 @@ def test_convert_os_status():
     data = convert_os_status(data)
     assert 'event' in data.columns
     assert data['event'].tolist() == [1, 0, 1]
-
-def test_limit_months():
-    data = pd.DataFrame({
-        'OS_MONTHS': [100, 150, 250],
-        'OS_STATUS': [1, 0, 1]
-    })
-    data = limit_months(data, 200)
-    assert len(data) == 2
-    assert data['OS_MONTHS'].max() <= 200
 
 def test_create_expression_groups():
     data = pd.DataFrame({
