@@ -1,3 +1,8 @@
+import os
+
+# Upgrade required packages
+os.system('pip install --upgrade pandas openpyxl matplotlib numpy lifelines gseapy')
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
