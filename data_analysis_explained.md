@@ -38,7 +38,7 @@ os.system('pip install --upgrade pandas openpyxl matplotlib numpy lifelines gsea
 - This command upgrades the specified packages to their latest versions available on PyPI (Python Package Index).
 - Run the script to upgrade all specified packages to their latest versions.
 - **Useful for ensuring all dependencies are current before running other scripts or analyses that depend on them.**
-- 
+  
  **D. List of Packages:**
 - **pandas:** A data manipulation and analysis library.
 - **openpyxl:** Used for reading and writing Excel files.
