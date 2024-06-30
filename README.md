@@ -21,6 +21,7 @@ Here, I propose to explore the underlying mechanisms and biological functions of
 To run this scripts, you need to have the following Python libraries installed :
 
 - `pandas`
+- `openpyxl`
 - `matplotlib`
 - `numpy`
 - `lifelines`
