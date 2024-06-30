@@ -24,7 +24,7 @@ pip install --upgrade -r requirements.txt
 
 ```python
   import os
-os.system('pip install --upgrade pandas openpyxl matplotlib numpy lifelines gseapy')
+os.system('pip install --upgrade -r requirements.txt')
 ```
 ### Detailed Explanation:
 
