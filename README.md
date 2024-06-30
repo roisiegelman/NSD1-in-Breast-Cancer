@@ -18,7 +18,7 @@ Here, I propose to explore the underlying mechanisms and biological functions of
 2. Investigate the cellular pathways affected by NSD1 levels within patients with different subtypes (Luminal A, Luminal B and Basal-like)   
 
 ## Requirements
-To run this script, you need to have the following Python libraries installed :
+To run this scripts, you need to have the following Python libraries installed :
 
 - `pandas`
 - `matplotlib`
