@@ -25,7 +25,7 @@ pip install -r requirements.txt
   import os
 os.system('pip install --upgrade pandas openpyxl matplotlib numpy lifelines gseapy')
 ```
-Detailed Explanation:
+## Detailed Explanation:
 
  **A. Importing `os` Module:**
 - The `os` module provides a way to use operating system-dependent functionality like executing shell commands.
