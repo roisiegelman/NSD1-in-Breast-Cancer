@@ -43,24 +43,24 @@ pip install -r requirements.txt
 **2. Coordinate the loading, merging, cleaning, and saving of the data by** 
    * Execute the script `data_processing.py`
   ```python
- data_processing.py
+python data_processing.py
 ```
    * The script will yield `cleaned_clinical_nsd1_data.csv` that will be used in the next part
    * Detailed explanations and requirements can be found in [`data_processing_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_processing_explained.md)
    * Testing the script:
    ``` python
-pytest test_data_processing.py
+python pytest test_data_processing.py
 ```
-**3. analyse the data**
+**3. analyze the data**
  * Execute the script `data_analysis.py`
   ```python
- data_analysis.py
+python  data_analysis.py
 ```
    * The script will yield a figure with 2 panels: Kaplan-Meier plot and barplot of the enriched pathwats
    * Detailed explanations and requirements can be found in [`data_analysis_explained.md`](https://github.com/roisiegelman/Project/blob/main/data_analysis_explained.md)
    * Testing the script:
    ```python
-pytest test_data_analysis.py
+python pytest test_data_analysis.py
 ```
 
 
