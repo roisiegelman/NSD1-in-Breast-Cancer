@@ -1,6 +1,6 @@
 # Elucidating the role of NSD1  in breast cancer  progression
 
-###  introduction
+##  introduction
 Breast cancer is one of the world's most common types of cancer. It is an aggressive, highly heterogeneous disease caused by mammary epithelial cell changes driven by genetic and epigenetic alterations. Reversible epigenetic regulation promotes breast cancer heterogeneity between and within tumors' cells by enabling cellular plasticity. 
 
 On a molecular level, tumors can be classified into subtypes based on a combination of histopathology of the primary tumor and the expression pattern of hormones estrogen receptor (ER), progesterone receptor (PR), and human epidermal growth factor receptor 2 (HER2). The proliferative capacity of the tumor cells, as measured by the Ki67 marker, also contributes to tumor classification. Recent technological advances also implemented genomic and transcriptomic profiling for classification. Of the five main breast cancer subtypes, Luminal A and B express hormone receptors. Luminal A displays low Ki67 and is HER2 negative, whereas luminal B tumors express high levels of Ki67 and can be either HER2 positive or negative. Normal-like tumors express hormone receptors but not HER2 and Ki67, as well as additional genomic and transcriptomic profiling6. HER2 positive, as its name applies, expresses amplified HER2 but not hormone receptors. Finally, basal-like breast cancer (by and large overlapping with triple-negative breast cancer, TNBC) is defined by a lack of expression of hormonal receptors and HER2<sup>2</sup>.
@@ -11,7 +11,7 @@ Our understanding of the relationship between histone post-translational modific
 Nuclear receptor binding SET domain (NSD) proteins consist of NSD1, NSD2, and NSD3. These proteins participate in the regulation of tumor initiation and progression. However, the biological functions of NSD family  in BC progression remain unclear. 
 Here, I propose to explore the underlying mechanisms and biological functions of NSD1 in BC progression. We formulated a hypothesis that NSD1 would strengthen BC cell drug resistance and lead to poor prognosis in patients with BC.
 
-###  main goals
+##  main goals
 
 1.  explore the effect of NSD1 gene expression on the overall survival of BC patients with different subtypes (Luminal A, Luminal B and Basal-like)
   
@@ -32,7 +32,7 @@ You can install these libraries using listed in `requirements.txt`, using pip:
 pip install -r requirements.txt
   ```
 
-###  Technical steps:
+##  Technical steps:
 **1. Export data from [cBioPrtal](https://www.cbioportal.org/)**
     * Choose a database according to the cancer type. In this project, I investigated the data from [METABRIC](https://www.cbioportal.org/study/summary?id=brca_metabric)
     * Download clinical data and expression levels of the gene of choice. I chose *NSD1*
