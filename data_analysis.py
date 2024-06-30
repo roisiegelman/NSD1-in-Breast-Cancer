@@ -36,7 +36,7 @@ def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
 def plot_gsea_results(gsea_results, ax):
     results_df = gsea_results.res2d
     results_df['NES'] = pd.to_numeric(results_df['NES'], errors='coerce')
-    results_df = results_df[results_df['FDR q-val'] < 0.05]  # Filter for significant pathways
+    results_df = results_df[results_df['FDR q-val'] < 0.05]
 
     high_expr_terms = results_df[results_df['NES'] > 0].nlargest(10, 'NES')
     low_expr_terms = results_df[results_df['NES'] < 0].nsmallest(10, 'NES')
@@ -72,7 +72,6 @@ def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, s
         kmf.fit(durations=low_expression_group['OS_MONTHS'], event_observed=low_expression_group['event'], label='Bottom Quartile')
         kmf.plot_survival_function(ax=ax1, ci_show=True, color='blue')
 
-        # Perform log-rank test
         results = logrank_test(high_expression_group['OS_MONTHS'], low_expression_group['OS_MONTHS'],
                                event_observed_A=high_expression_group['event'], event_observed_B=low_expression_group['event'])
         p_value = results.p_value
@@ -82,7 +81,7 @@ def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, s
     ax1.set_title(f'Kaplan-Meier Survival Curve for {gene_expression} Expression in {subtype}')
     ax1.set_xlabel('Months')
     ax1.set_ylabel('Survival Probability')
-    ax1.legend()
+    ax1.legend(loc='best')
 
     gsea_results = run_gsea(data, gsea_filepath, gene_set_filepath, subtype)
     plot_gsea_results(gsea_results, ax2)
@@ -112,7 +111,7 @@ def main(data_filepath='cleaned_clinical_nsd1_data.csv', gsea_filepath='_NSD1_hi
 
 if __name__ == '__main__':
     if any(name.startswith('pytest') for name in sys.modules):
-        main()  # Run with default parameters
+        main()
     else:
         print("Enter the number corresponding to the subtype: 1 for LumA, 2 for LumB, 3 for Basal:")
         subtype_choice = int(input().strip())
