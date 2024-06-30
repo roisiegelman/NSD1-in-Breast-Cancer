@@ -25,28 +25,30 @@ pip install -r requirements.txt
 os.system('pip install --upgrade pandas openpyxl matplotlib numpy lifelines gseapy')
 ```
 Detailed Explanation:
-### Updating packages: 
+### 1. Updating packages: 
  **A. Importing `os` Module:**
 - The `os` module provides a way to use operating system-dependent functionality like executing shell commands.
 
  **B. Using `os.system()`:**
 - This function allows you to run shell commands from within a Python script.
 - The command inside the parentheses is executed in the shell.
- **C. `pip install --upgrade`:** 
+
+  **C.`pip install --upgrade`:** 
 - This command upgrades the specified packages to their latest versions available on PyPI (Python Package Index).
-List of Packages:
 
-pandas: A data manipulation and analysis library.
-openpyxl: Used for reading and writing Excel files.
-matplotlib: A plotting library for creating static, interactive, and animated visualizations.
-numpy: A library for numerical computations, supporting large, multi-dimensional arrays and matrices.
-lifelines: A library for survival analysis in Python.
-gseapy: A Python wrapper for GSEA (Gene Set Enrichment Analysis) implementation.
-Usage:
-Run the script to upgrade all specified packages to their latest versions.
-Useful for ensuring all dependencies are current before running other scripts or analyses that depend on them.
+ **D. List of Packages:**
+- **pandas:** A data manipulation and analysis library.
+- **openpyxl:** Used for reading and writing Excel files.
+- **matplotlib:** A plotting library for creating static, interactive, and animated visualizations.
+- **numpy:** A library for numerical computations, supporting large, multi-dimensional arrays and matrices.
+- **lifelines:** A library for survival analysis in Python.
+- **gseapy:** A Python wrapper for GSEA (Gene Set Enrichment Analysis) implementation.
 
-### 1. Data Loading and Validation
+## Usage:
+- Run the script to upgrade all specified packages to their latest versions.
+- **Useful for ensuring all dependencies are current before running other scripts or analyses that depend on them.**
+
+### 2. Data Loading and Validation
 ####    A. **`load_data(filepath)`**
  - **Purpose**: It reads a CSV file from the given filepath and converts it into a Pandas DataFrame.
 
@@ -63,7 +65,7 @@ def ensure_columns_present(data, required_columns):
     if not all(col in data.columns for col in required_columns):
         raise ValueError(f"Missing one or more required columns: {required_columns}")
  ```       
-### 2. Data Preprocessing
+### 3. Data Preprocessing
 ###    A. **`convert_os_status(data)`**
   - **Purpose**: Converts the 'OS_STATUS' column to an 'event' column with binary values. '1' is converted to 1 (event), and other values are converted to 0 (no event).
 
@@ -86,7 +88,7 @@ def create_expression_groups(data, gene_expression):
     data.loc[:, 'low_expression'] = data.loc[:, gene_expression] <= bottom_quartile_threshold
     return data
 ```
-### 3. GSEA Analysis
+### 4. GSEA Analysis
  **`run_gsea(data, gsea_filepath, gene_set_filepath, subtype)`**
  - **Purpose**: Performs GSEA using the prerank function from the gseapy library. It reads the GSEA data from an Excel file and ranks the genes based on their log2 ratios.
 
@@ -100,7 +102,7 @@ def run_gsea(data, gsea_filepath, gene_set_filepath, subtype):
     gsea_results = prerank(rnk=rnk, gene_sets=gene_set_filepath, threads=4, permutation_num=100)
     return gsea_results
 ```
-### 4. Plotting Results
+### 5. Plotting Results
 ###    A. **`plot_gsea_results(gsea_results, ax)`**
  - **Purpose**: Plots the GSEA results, highlighting significant pathways.
 
@@ -166,7 +168,7 @@ def plot_kaplan_meier(data, gene_expression, gsea_filepath, gene_set_filepath, s
     plt.tight_layout()
     plt.show()
 ```
-### 5. Main Function
+### 6. Main Function
 **`main()`**
 - **Purpose**: Coordinates the entire workflow, including loading data, preprocessing, filtering by subtype, and plotting results.
 
