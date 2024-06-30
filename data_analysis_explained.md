@@ -15,7 +15,8 @@ To run this script, you need to have the following Python libraries installed :
 You can install these libraries using listed in `requirements.txt`, using pip:
 
 ```python
-pip install -r requirements.txt
+pip install --upgrade -r requirements.txt
+
   ```
 ## Script Overview
 
