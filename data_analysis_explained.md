@@ -27,8 +27,8 @@ os.system('pip install --upgrade pandas openpyxl matplotlib numpy lifelines gsea
 Detailed Explanation:
 ### 1. Importing `os` Module:
 - The `os` module provides a way to use operating system-dependent functionality like executing shell commands.
-Using `os.system()`:
 
+**- Using `os.system()`**:
 This function allows you to run shell commands from within a Python script.
 The command inside the parentheses is executed in the shell.
 pip install --upgrade:
