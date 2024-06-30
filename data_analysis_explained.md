@@ -36,7 +36,9 @@ os.system('pip install --upgrade pandas openpyxl matplotlib numpy lifelines gsea
 
   **C.`pip install --upgrade`:** 
 - This command upgrades the specified packages to their latest versions available on PyPI (Python Package Index).
-
+- Run the script to upgrade all specified packages to their latest versions.
+- **Useful for ensuring all dependencies are current before running other scripts or analyses that depend on them.**
+- 
  **D. List of Packages:**
 - **pandas:** A data manipulation and analysis library.
 - **openpyxl:** Used for reading and writing Excel files.
@@ -44,10 +46,6 @@ os.system('pip install --upgrade pandas openpyxl matplotlib numpy lifelines gsea
 - **numpy:** A library for numerical computations, supporting large, multi-dimensional arrays and matrices.
 - **lifelines:** A library for survival analysis in Python.
 - **gseapy:** A Python wrapper for GSEA (Gene Set Enrichment Analysis) implementation.
-
-## Usage:
-- Run the script to upgrade all specified packages to their latest versions.
-- **Useful for ensuring all dependencies are current before running other scripts or analyses that depend on them.**
 
 ### 2. Data Loading and Validation
 ####    A. **`load_data(filepath)`**
